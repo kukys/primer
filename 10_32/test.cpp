@@ -1,0 +1,39 @@
+#include"E:/MinGW/project/test/Sales_item.h"
+
+#include<vector>
+#include<iostream>
+#include<iterator>
+#include<algorithm>
+
+inline bool comparIsbn(const Sales_item &sd1, const Sales_item &sd2)
+{
+    return sd1.isbn().size() < sd2.isbn().size();
+}
+
+int main()
+{
+  std::vector<Sales_item> vec;
+  std::istream_iterator<Sales_item> item_iter(std::cin),eof;
+  std::ostream_iterator<Sales_item> out_iter(std::cout,"\n");
+    
+   Sales_item sum =*item_iter++;
+   
+   while(item_iter!=eof)
+   {
+    if(sum.isbn()==item_iter->isbn())
+      {
+        sum+=*item_iter++;
+      }
+    else
+      {
+        vec.push_back(sum);
+        sum = *item_iter++;
+      }
+  }
+  vec.push_back(sum);
+  
+  std::sort(vec.begin(),vec.end(),comparIsbn);
+  
+  copy(vec.begin(),vec.end(),out_iter);
+  return 0;
+}

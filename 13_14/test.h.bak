@@ -1,0 +1,14 @@
+/*
+习题13_14 _15_16 _17
+熟悉拷贝构造函数，
+*/
+#ifndef TEST_H
+#define TEST_H
+#include <algorithm>  
+class	numbered{
+	public:
+	numbered(){static int i=0;mysn=i+5;};
+     //numbered(const numbered&s){mysn=s.mysn+2;};
+	int mysn;
+};
+#endif //TEST_h

@@ -1,0 +1,77 @@
+
+/*#include"My_13_25.h"
+#include<fstream>
+#include<iostream>
+int main()
+{
+  std::ifstream ifs("book.txt");
+  StrBlob blob;
+  for (std::string str; std::getline(ifs, str); )
+       blob.push_back(str);
+  for (StrBlobPtr pbeg(blob.begin()), pend(blob.end()); pbeg != pend; pbeg.incr())
+       std::cout << pbeg.deref() << std::endl;
+}*/
+#include <iostream>
+using namespace std;
+
+class CTest
+{
+public:
+     CTest(){}
+     ~CTest(){}
+
+     CTest(const CTest &test)
+     {
+          cout<<"copy constructor."<<endl;
+     }
+
+     void operator=(const CTest &test)
+     {
+          cout<<"operator="<<endl;
+     }
+
+     void Test(CTest test)
+     {}
+
+     CTest Test2()
+     {
+          CTest a;
+          return a;
+     }
+
+     void Test3(CTest &test)
+     {}
+
+     CTest &Test4()
+     {
+          CTest *pA = new CTest;
+          return *pA;
+     }
+};
+
+int main()
+{
+     CTest obj;//默认构造函数
+
+     CTest obj1(obj); // 调用复制构造函数
+
+     obj1 = obj; // 调用重载赋值操作符
+
+     /* 传参的过程中，要调用一次复制构造函数
+     * obj1入栈时会调用复制构造函数创建一个临时对象，与函数内的局部变量具有相同的作用域
+     */
+     obj.Test(obj1);
+
+     /* 函数返回值时，调用复制构造函数；将返回值赋值给obj2时，调用重载赋值操作符
+     * 函数返回值时，也会构造一个临时对象；调用复制构造函数将返回值复制到临时对象上
+     */
+     CTest obj2；
+     obj2 = obj.Test2();
+
+     obj2.Test3(obj); // 参数是引用，没有调用复制构造函数
+
+     CTest obj3;
+     obj2.Test4(); // 返回值是引用，没有调用复制构造函数
+
+     return 0;
+}

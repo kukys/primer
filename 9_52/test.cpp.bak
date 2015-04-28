@@ -1,0 +1,124 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+int jisuan(string & str)
+{
+	char op;
+	int in2,isum;
+	auto pos=str.find_first_not_of("0123456789");
+	string sn;
+	isum=stoi(str.substr(0,pos));
+	cerr<<"isum"<<isum<<endl;
+	cout<<"first"<<str.find_first_not_of("0123456789", pos)<<endl;
+	cout<<"last"<<str.find_last_of("+-",pos)<<endl;
+
+	while ((pos=(str.find_first_not_of("0123456789", pos)) )!=str.find_last_not_of("0123456789",pos))
+	{
+		op=str[pos];
+		pos++;
+			sn = str.substr(pos, str.find_first_not_of("0123456789", pos) - pos);
+			cout << "sn" << sn << endl;
+			in2 = stoi(sn);
+			cout << "in2" << in2 << endl;
+
+			switch (op)
+			{
+				case '+':
+					isum += in2;
+					cout << "isum+:" << isum << endl;
+					break;
+
+				case '-':
+					isum -= in2;
+					cout << "isum-" << isum << endl;
+					break;
+
+				default:
+					cerr << "wrong oprator!" << endl;
+					break;
+			}
+
+
+	}
+	pos=str.find_last_not_of("0123456789");
+	op=str[pos];
+	sn=str.substr(pos,str.size()-pos);
+	in2=stoi(sn);
+	switch (op)
+			{
+				case '+':
+					isum += in2;
+					cout << "isum+:" << isum << endl;
+					break;
+
+				case '-':
+					isum -= in2;
+					cout << "isum-" << isum << endl;
+					break;
+
+				default:
+					cerr << "wrong oprator!" << endl;
+					break;
+			}
+
+return isum;
+}
+int main()
+{
+	stack<char> sc;
+	stack<int> si;
+	string s;
+	char input;
+
+	while (cin >> input)
+	{
+
+		if (input == ')')
+		{
+			char p;
+
+			while (!sc.empty())
+			{
+				p = sc.top();
+				sc.pop();
+
+				if (p == '(')
+				{
+					break;
+				}
+
+				s = p + s;    //p加到前面去 顺序就对了
+
+			}
+
+			if (p != '(')
+			{
+				cerr << "Unmatched )." << endl;
+				return -1;
+			}
+			cout<<"s的表达式:"<<s<<endl;
+			int a=jisuan(s);
+			s=to_string(a);
+			cout<<a<<endl;
+			si.push(a);
+
+		}
+		else
+		{
+			sc.push(input);
+		}
+	}
+
+	while (!sc.empty())
+	{
+		if (sc.top() == '(')
+		{
+			cerr << "Unmatched )." << endl;
+			return -1;
+		}
+
+		s = sc.top() + s;
+		sc.pop();
+	}
+	cout << s << endl;
+}

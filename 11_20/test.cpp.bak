@@ -1,0 +1,23 @@
+#include<map>
+#include<iostream>
+using namespace std;
+int main()
+{
+  map<string,size_t>word_count;
+  string word;
+  while(cin>>word)
+  {
+    auto ret =word_count.insert({word,1});
+    if(!ret.second)
+      {
+        ++ret.first->second;
+        //ret.first获取迭代器map<string,size_t>::iterator;
+        //ret.first->对迭代器解引用，提取map中的元素  
+      }
+  }
+  for(auto &t:word_count)
+    {
+      cout<<t.first<<" 字符出现 "<<t.second<<"次";
+    }
+  return 0;
+}

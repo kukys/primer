@@ -1,0 +1,19 @@
+/*#include"Window_mgr.h"
+#include<string>
+void Window_mgr::clear(ScreenIndex i)
+
+	{
+		
+		Screen&s=screens[i];
+
+		s.contents=string(s.height*s.width,' ');
+	}
+	#include "wyscreen_mgr.h"
+#include <string>
+
+void wyScreen_mgr::clear(ScreenIndex i)
+{
+    wyScreen &s = this->wyScreens[i];
+    s.contents = std::string(" ", s.height * s.width);
+}
+*/

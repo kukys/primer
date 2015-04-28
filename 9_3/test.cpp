@@ -1,0 +1,28 @@
+#include<vector>
+#include<iostream>
+using std::vector;
+using std::cout;
+  using std::cin;
+    using std::endl;
+vector<int>::iterator s(const vector<int>::iterator first,const vector<int>::iterator last,const int number)
+{
+  for(auto it=first;it!=last;++it)
+  {
+    if(*it==number)
+      return it;
+  }
+  return last;
+}
+
+int main()
+{
+  vector<int> ss={1,2,3,4,5,6,7,8,9,10};
+  int c;
+  cout<<"请输入一个整数,我们将判断数组里是否存在(0表示不存在,1表示存在)"<<endl;
+  while(cin>>c)
+  {
+  s(ss.begin(),ss.end(),c);
+  cout<<endl;
+  }
+  return 0;
+}

@@ -1,0 +1,61 @@
+#include<iostream>
+#include<string>
+#include"Sales_Data.h"
+using std::cerr;
+using std::cin;
+using std::coout;
+using std::istream;
+using std::ostream;	
+int main()
+{
+	Sales_Data totle;
+	if(read(cin,total))
+		{
+			Sales_Data trans;
+			
+			while(read(cin,trans))
+		   {
+		   	if(total.units_sold==trans.units_sold)
+		   		{
+		   			total.combine(trans);
+		   		}
+		   		else
+		   			{
+		   				print(cout,total)<<endl;
+		   				total=trans;
+		   			}
+		   }
+		   print(cout,total)<<endl;
+		}else{
+			cerr<<"No data? "<<endl;
+}
+double Sales_Dat::avg_price()const
+{
+	if(units_sold)
+		{
+			return revenue/units_sold;
+		}
+		else 
+			return 0;
+}
+
+istream &read(istream&is,Sales_Data &item)
+{
+	double price =0;
+  is>>itme.bookNo>>item.units_sold>>price;
+  item.revenue=price*item.units_sold;
+  return is;
+}
+
+ostream &print(ostream&os,const Sales_Data&item)
+{
+	os<<"书号"<<itme.bookNo<<"数目"<<item.units_sold<<"总价"<<item.revenue<<"平均价格"<<item.avg_price;
+	return os;
+}
+
+Sales_Data add(const Sales_Data fhs,const Sales_Data hhs)
+{
+	Sales_Data s=fhs;
+	fhs.combine(hhs);
+	return s;
+}

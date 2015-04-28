@@ -1,0 +1,24 @@
+#include"test.h"
+#include<iostream>
+int Employee::i = 100;
+using std::cout;
+  using std::endl;
+    Employee::Employee()
+      {
+        employeeName="—Ó÷“";
+        employeeId = i++;
+        cout<<employeeName<<" "<<employeeId<<endl;
+      }
+       Employee:: Employee(const string & name)
+        {
+          employeeName=name;
+          employeeId =i++;
+          cout<<employeeName<<" "<<employeeId<<endl;
+        }
+int main()
+{ 
+  Employee();
+  Employee one("—Ó1") ;
+  Employee two("—Ó2");
+  return 0;
+}

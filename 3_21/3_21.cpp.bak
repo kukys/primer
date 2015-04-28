@@ -1,0 +1,10 @@
+#include<iostream>
+#include<vector>
+using std::cout;
+using std::vector;
+int main()
+{
+	vector<int > v1 (10,42);
+	cout<<v1;
+	return 0;
+}

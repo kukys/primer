@@ -1,0 +1,38 @@
+#include<vector>
+#include<sstream>
+#include<iostream>
+#include<fstream>
+#include<string>
+using std::vector;
+using std::string;
+using std::istringstream;
+using std::getline; 
+using std::ifstream;
+  using std::cout;
+ vector<string> &str(const string &a,vector<string> &s)
+{
+  string line;
+  ifstream in(a);
+  while(getline(in,line))
+  {
+    s.push_back(line);  
+  }
+  return s;
+}
+
+int main()
+{
+    vector<string> v;
+    v = str("test.txt", v);
+    for (vector<string>::iterator it = v.begin(); it != v.end(); ++it)
+    {
+        istringstream sfin(*it);
+        string s;
+        while(sfin>>s)
+        {
+            cout<<s<<'\t ';
+        }
+
+    }
+    return 0;
+}

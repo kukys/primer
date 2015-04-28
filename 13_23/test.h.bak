@@ -1,0 +1,38 @@
+#ifndef TEST_H
+#define TEST_H
+#include<string>
+#include<vector>
+using std::vector;
+class Hasptr
+{
+  public:
+    friend void swap(Hasptr&, Hasptr&);
+    Hasptr  (const std::string  &s  = std::string()):
+    ps(new std::string  (s)),i(0) {}
+    Hasptr(const Hasptr &hp):ps(new std::string(*hp.ps)),i(hp.i){}
+      Hasptr &operator=(const Hasptr&hp) 
+      {
+        this->swap(tmp);
+          return *this;                                 //返回本对象             
+      }  
+      ~Hasptr();
+    private:
+        std ::string*ps;
+          int i;
+}
+void swap(Hasptr& lhs, Hasptr& rhs)
+{
+    using std::swap;
+    swap(lhs.ps, rhs.ps);
+    swap(lhs.i, rhs.i);
+    std::cout << "call swap(Hasptr& lhs, Hasptr& rhs)" << std::endl;
+}
+bool operator<(const Hasptr &lhs, const Hasptr &rhs)
+{
+    return *lhs.ps < *rhs.ps;
+}
+
+//未定义析构函数，使得ps的内存得不到释放，造成内存泄漏。
+//成员变量ps是通过new操作在堆上显式分配出的一段内存，需要使用delete显式的去释放。
+//If Hasptr didn't define the copy constructor, when assignment happened, just points copied, the string witch ps points haven't been copied.
+#endif //TEST_H 

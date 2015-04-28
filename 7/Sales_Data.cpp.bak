@@ -1,0 +1,77 @@
+#include"Sales_Data.h"
+using std::cout;
+using std::cin;
+using std::cerr;
+using std::istream;
+using std::ostream;
+using std::string;
+using std::endl;
+int main()
+{
+	Sales_Data total;
+	if(read(cin,total))
+		{
+			Sales_Data trans;
+			while(read(cin,trans))
+			{
+				if(total.isbn()==trans.isbn())
+					{
+						total.combine(trans);
+					}
+					else
+						{
+							print(cout,total)<<endl;
+							total=trans;
+						}
+			}
+			print(cout,total)<<endl;
+		}else
+			{
+				cerr<<"NO Data?"<<endl;
+			}
+	return 0;
+}
+
+	double Sales_Data::avg_price() const
+	{
+		if(units_sold)
+			{
+				return revenue/units_sold;
+			}
+			return 0;
+	}
+	
+Sales_Data&Sales_Data::combine( const Sales_Data&s) 
+{
+	units_sold+=s.units_sold;
+	revenue+=	s.revenue;
+	return *this;	
+}
+	
+istream &read(istream &is,Sales_Data &p)
+{
+	double price=0;
+	
+	is>>p.bookNo>>p.units_sold>>price;
+	p.revenue=p.units_sold*price;
+	return is;
+}
+
+ostream &print(ostream &os,const Sales_Data &p)
+{
+	os<<"书号是"<<p.bookNo<<"数量是"<<p.units_sold<<"销售额是"<<p.revenue<<"平均价格是"<<p.avg_price();
+	return os;
+}
+
+Sales_Data add(const Sales_Data &fhs,const Sales_Data &hhs)
+{
+	Sales_Data s=fhs;
+	s.combine(hhs);
+	return s;
+}
+
+/*Sales_Data(istream&is)
+{
+	read(is,*this);
+}*/
+//定义在外部

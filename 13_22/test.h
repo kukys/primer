@@ -1,0 +1,20 @@
+#ifndef TEST_H
+#define TEST_H
+#include<string>
+class HasPtr
+{
+  public:
+    Hasptr  (const std::string  &s  = std::string()):
+    ps(new std::string  (s)),i(0) {}
+  Hasptr(const Hasptr &hp):ps(new std::string(*hp.ps)),i(hp.i){}
+      Hasptr &operator=(const Hasptr&hp) 
+      {
+        auto hp=new std::string(*hp.ps);//没有释放ps的旧内存，最后结果是放在ps中，不是hp 中
+          i=hp.i;                                               //没有返回值。。。。。。
+      }  
+    private:
+        std ::string*ps;
+          int i;
+}
+
+#endif //TEST_H 

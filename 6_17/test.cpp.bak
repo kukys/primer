@@ -1,0 +1,54 @@
+ #include<iostream>
+ #include<string>
+ using std::cout;
+ using std::cin;
+ using std::endl;
+ using std::string;
+ 	 void Upper(const string &s)
+ 	 {
+ 	 	  for(auto a :s)
+      	{
+      		if(isupper(a))
+      			{
+      				cout<<a<<'\t';
+      			}
+      	}
+ 	 }
+ 	 bool Judge(const string &s)
+ 	 {
+      for(auto a :s)
+      	{
+      		if(isupper(a))
+      			{
+      				return true;
+      			}
+      	}
+      	return false;
+ 	 }
+ 	 void to_lower(string &s)
+ 	{
+ 		for(auto &a:s)
+ 			{
+ 				a=tolower(a);
+ 			}
+ 	}
+ 	int main()
+ 	{
+ 		string str, to_lowerstr;
+ 		cout<<"请输入字符串";
+ 		 getline(cin, str);
+ 		 to_lowerstr=str;
+ 		if(Judge(str))
+ 			{
+ 				cout<<"有大写字符"<<endl;
+ 				      Upper(str);
+ 				      cout<<"是大写字母"<<endl;
+ 				 			to_lower(str);
+ 			cout<<to_lowerstr<<"的小写形式"<<str<<endl;
+ 			}
+ 			else
+ 				cout<<"没有大写字符"<<endl;
+
+ 				
+ 		return 0;
+ 	}

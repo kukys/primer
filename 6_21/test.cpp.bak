@@ -1,0 +1,17 @@
+	#include<iostream>
+	using namespace std;
+	int Compare(const int m,const int *val)
+	{
+		return (m<*val) ?m : *val;
+	} 
+	int main()
+	{
+		int a;
+		cin>>a;
+		int b,*l;
+		cin>>b;
+		Compare(a,&b);
+		return 0;
+	}
+	
+	
